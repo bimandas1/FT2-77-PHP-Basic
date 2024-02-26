@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> PHP - Basic Assignment-7 </title>
+</head>
+<body>
+    <form action="./form.php" method="POST">
+        User Id :
+        <input type="text" id="id" name="id" placeholder="User Id">
+        <br> <br>
+        Password :
+        <input type="text" id="password" name="password" placeholder="Password">
+        <br> <br>
+        <input type="submit" name="submit">
+    </form>
+</body>
+    <script>
+        function unsetInputValue() {
+            var inputId = document.getElementById('id');
+            var inputPassword = document.getElementById('password');
+
+            inputId.value = "";
+            inputPassword.value = "";
+
+        }
+
+        window.onload = unsetInputValue;
+    </script>
+
+</html>
