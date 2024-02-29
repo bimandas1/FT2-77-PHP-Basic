@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> PHP - Basic Assignment-7 </title>
+    <link rel="stylesheet" href="./css/index.css">
 </head>
-<body>
-    <form action="./form.php" method="POST">
-        User Id :
-        <input type="text" id="id" name="id" placeholder="User Id">
-        <br> <br>
-        Password :
-        <input type="text" id="password" name="password" placeholder="Password">
-        <br> <br>
-        <input type="submit" name="submit">
-    </form>
-</body>
-    <script src="./script.js"> </script>
 
+<body>
+    <div class="user-input">
+        <form action="./form.php" method="POST" id="user-data" onsubmit="clearFormFields()">
+            User Id :
+            <input type="text" id="id" name="id" placeholder="User Id">
+            Password :
+            <input type="text" id="password" name="password" placeholder="Password">
+            <input type="submit" name="submit">
+        </form>
+    </div>
+</body>
+<script src="./scripts/index.js"></script>
 </html>

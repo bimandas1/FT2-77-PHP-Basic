@@ -1,17 +1,16 @@
 <?php
 
 /**
- * Validate the Email
+ * Validate the Email.
+ *
  * @param string $email
+ * 	User's email.
+ *
  * @return boolean
  * 	True if $email is a valid one, else false.
  */
-
-function isValidEmail($email): bool
-{
-	return TRUE;   // Demo return, as API call limit exceeded !
-
-	// Get the API Key
+function isValidEmail($email): bool {
+	// Get the API Key.
 	require __DIR__ . '/creds.php';
 
 	$ch = curl_init();
@@ -25,9 +24,10 @@ function isValidEmail($email): bool
 
 	$response = curl_exec($ch);
 
-	// JSON decoding
+	// JSON decoding.
 	$data = json_decode($response, TRUE);
 
+	// If email is valid, return true.
 	if ($data['deliverability'] == 'DELIVERABLE') {
 		return TRUE;
 	}

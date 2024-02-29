@@ -2,84 +2,83 @@
 
 include __DIR__ . '/emailValidate.php';
 
-$firstName = $lastName = $marksStr = '';
-
-$targetFile = '';
-$imgUpload = '';
-
-$subMarkArr = '';
-
+$first_name = '';
+$last_name = '';
+$marks_str = '';
+$target_file = '';
+$img_upload = '';
+$sub_mark_arr = '';
 $phone = '+91';
-$validPhone = TRUE;
-
+$valid_phone = TRUE;
 $email = '';
-$emailCheck = '';
+$email_check = '';
 
-
-// If Form submitted
+// If Form submitted.
 if (isset($_POST['submit'])) {
 
-  // Get firstName & lastName
-  $firstName = $_POST['first-name'];
-  $lastName = $_POST['last-name'];
+  // Get first_name & last_name.
+  $first_name = $_POST['first-name'];
+  $last_name = $_POST['last-name'];
 
-  // Get image
+  // Get image.
   if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
-    $targetFile = 'uploads/' . basename($_FILES['image']['name']);
+    $target_file = './images/' . basename($_FILES['image']['name']);
 
-    if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
-      $imgUpload = 'successful';
+    // Move uploaded image to 'images' folder.
+    if (move_uploaded_file($_FILES['image']['tmp_name'], $target_file)) {
+      $img_upload = 'successful';
     }
     else {
-      $imgUpload = 'unsuccessful';
+      $img_upload = 'unsuccessful';
     }
   }
 
-  // Get suject marks
-  $marksStr = $_POST['subject-marks'];
-  $marks_arr = explode('\n', $marksStr); // Convert the string in array of `sub|mark'
-  $subMarkArr = array();  // Associative array of `sub => mark`
+  // Get sujects and marks string.
+  $marks_str = $_POST['subject-marks'];
+  // Convert the string in array of `sub|mark'.
+  $marks_arr = explode("\n", $marks_str);
+  // Convert the $marks_arr array in associative array of `sub => mark`.
+  $sub_mark_arr = array();
 
   foreach ($marks_arr as $key => $mark) {
-    $sub_mark = explode('|', $mark);
-    $subMarkArr[$sub_mark[0]] = $sub_mark[1];
+    $subMark = explode('|', $mark);
+    $sub_mark_arr[$subMark[0]] = $subMark[1];
   }
 
-  // Get phone number
+  // Get phone number and validate it.
   if (isset($_POST['phone'])) {
     $phone = $_POST['phone'];
 
     if (strlen($phone) == 13 && preg_match('/^\+91[0-9]{10}$/', $phone)) {
-      $validPhone = TRUE;
+      $valid_phone = TRUE;
     }
     else {
-      $validPhone = FALSE;
+      $valid_phone = FALSE;
     }
   }
 
-  // Get Email
+  // Get Email and validate it.
   if (isset($_POST['email'])) {
     $email = $_POST['email'];
 
     if (isValidEmail($email) == TRUE) {
-      $emailCheck = 'valid';
+      $email_check = 'valid';
     }
     else {
-      $emailCheck = 'invalid';
+      $email_check = 'invalid';
     }
   }
 
-  // Create,save and download user datas in pdf format.
-  if ($validPhone == TRUE && $emailCheck == 'valid') {
+  // If phone number and email is valid then redirect to pdf.php page.
+  if ($valid_phone == TRUE && $email_check == 'valid') {
     // Session start
     session_start();
-    $_SESSION['firstName'] = $firstName;
-    $_SESSION['lastName'] = $lastName;
+    $_SESSION['first_name'] = $first_name;
+    $_SESSION['last_name'] = $last_name;
     $_SESSION['phone'] = $phone;
     $_SESSION['email'] = $email;
 
     header('Location: pdf.php');
-
     exit;
   }
 }
