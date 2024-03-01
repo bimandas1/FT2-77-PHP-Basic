@@ -1,6 +1,6 @@
 <?php
 
-include __DIR__ . '/emailValidate.php';
+include __DIR__ . '/email_validate.php';
 
 // Default value.
 $valid_phone = TRUE;
