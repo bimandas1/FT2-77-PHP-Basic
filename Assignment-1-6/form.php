@@ -2,20 +2,12 @@
 
 include __DIR__ . '/emailValidate.php';
 
-$first_name = '';
-$last_name = '';
-$marks_str = '';
-$target_file = '';
-$img_upload = '';
-$sub_mark_arr = '';
-$phone = '+91';
+// Default value.
 $valid_phone = TRUE;
-$email = '';
 $email_check = '';
 
 // If Form submitted.
 if (isset($_POST['submit'])) {
-
   // Get first_name & last_name.
   $first_name = $_POST['first-name'];
   $last_name = $_POST['last-name'];
@@ -41,8 +33,8 @@ if (isset($_POST['submit'])) {
   $sub_mark_arr = array();
 
   foreach ($marks_arr as $key => $mark) {
-    $subMark = explode('|', $mark);
-    $sub_mark_arr[$subMark[0]] = $subMark[1];
+    $sub_mark = explode('|', $mark);
+    $sub_mark_arr[$sub_mark[0]] = $sub_mark[1];
   }
 
   // Get phone number and validate it.
