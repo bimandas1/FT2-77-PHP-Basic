@@ -27,9 +27,8 @@ if (isset($_POST['submit'])) {
 
   // Get sujects and marks string.
   $marks_str = $_POST['subject-marks'];
-  // Convert the string in array of `sub|mark'.
+  // Convert the input string (sub|mark) in associative array of `sub => mark`.
   $marks_arr = explode("\n", $marks_str);
-  // Convert the $marks_arr array in associative array of `sub => mark`.
   $sub_mark_arr = array();
 
   foreach ($marks_arr as $key => $mark) {
@@ -53,7 +52,7 @@ if (isset($_POST['submit'])) {
   if (isset($_POST['email'])) {
     $email = $_POST['email'];
 
-    if (isValidEmail($email) == TRUE) {
+    if (is_valid_email($email) == TRUE) {
       $email_check = 'valid';
     }
     else {
@@ -63,7 +62,7 @@ if (isset($_POST['submit'])) {
 
   // If phone number and email is valid then redirect to pdf.php page.
   if ($valid_phone == TRUE && $email_check == 'valid') {
-    // Session start
+    // Session start.
     session_start();
     $_SESSION['first_name'] = $first_name;
     $_SESSION['last_name'] = $last_name;

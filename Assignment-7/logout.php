@@ -12,7 +12,7 @@
 
   require __DIR__ . '/sessionManage.php';
   // Destroy the session.
-  destroySession();
+  destroy_session();
   ?>
 
   <p>You have been Logged out</p>

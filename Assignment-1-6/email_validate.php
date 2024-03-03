@@ -11,7 +11,7 @@ require __DIR__ . '/requests.php';
  * @return bool
  *   True if email is a valid, else false.
  */
-function isValidEmail(string $email): bool {
+function is_valid_email(string $email): bool {
   // Get the API Key.
   require __DIR__ . '/creds.php';
   // API call url that contains api key and user's email as parameters.

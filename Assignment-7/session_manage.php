@@ -3,7 +3,7 @@
 /**
  * Function to destroy the session.
  */
-function destroySession() {
+function destroy_session() {
   // Start session.
   session_start();
   // Unsest session variables.
