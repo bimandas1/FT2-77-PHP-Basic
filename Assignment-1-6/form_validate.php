@@ -3,14 +3,18 @@
 include __DIR__ . '/email_validate.php';
 
 // Default value.
+$valid_full_name = TRUE;
 $valid_phone = TRUE;
 $email_check = '';
+$sub_mark_check = TRUE;
 
 // If Form submitted.
 if (isset($_POST['submit'])) {
   // Get first_name & last_name.
-  $first_name = $_POST['first-name'];
-  $last_name = $_POST['last-name'];
+  $full_name = $_POST['first-name'] . " " . $_POST['last-name'];
+  if (!preg_match('/^[a-z A-Z]*$/', $full_name)) {
+    $valid_full_name = FALSE;
+  }
 
   // Get image.
   if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
@@ -29,11 +33,22 @@ if (isset($_POST['submit'])) {
   $marks_str = $_POST['subject-marks'];
   // Convert the input string (sub|mark) in associative array of `sub => mark`.
   $marks_arr = explode("\n", $marks_str);
-  $sub_mark_arr = array();
 
-  foreach ($marks_arr as $key => $mark) {
-    $sub_mark = explode('|', $mark);
-    $sub_mark_arr[$sub_mark[0]] = $sub_mark[1];
+  foreach ($marks_arr as $element) {
+    // Remove white spaces.
+    $element = trim($element);
+    // Check RegEx of element, that should be as `subject|mark`.
+    if (!preg_match('/^[A-Za-z0-9]+[|][0-9]+$/', $element)) {
+      $sub_mark_check = FALSE;
+    }
+  }
+
+  $sub_mark_arr = array();
+  if ($sub_mark_check === TRUE) {
+    foreach ($marks_arr as $key => $mark) {
+      $sub_mark = explode('|', $mark);
+      $sub_mark_arr[$sub_mark[0]] = $sub_mark[1];
+    }
   }
 
   // Get phone number and validate it.
@@ -58,18 +73,5 @@ if (isset($_POST['submit'])) {
     else {
       $email_check = 'invalid';
     }
-  }
-
-  // If phone number and email is valid then redirect to pdf.php page.
-  if ($valid_phone == TRUE && $email_check == 'valid') {
-    // Session start.
-    session_start();
-    $_SESSION['first_name'] = $first_name;
-    $_SESSION['last_name'] = $last_name;
-    $_SESSION['phone'] = $phone;
-    $_SESSION['email'] = $email;
-
-    header('Location: pdf.php');
-    exit;
   }
 }
