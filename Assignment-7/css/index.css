@@ -1,0 +1,14 @@
+.user-input {
+  background-color: yellowgreen;
+  margin: 0 auto;
+  padding: 30px;
+  width: 500px;
+
+  * {
+    display: block;
+  }
+
+  input {
+    margin: 5px 0 15px;
+  }
+}
