@@ -2,16 +2,30 @@
 
 require __DIR__ . '/requests.php';
 
-class fetchAPI {
-  public static $domain = 'https://www.innoraft.com/';
+class FetchAPI {
+  private static $domain = 'https://www.innoraft.com/';
+  private $url;
   public $title = [];
   public $title_img = [];
   public $icon_arrays = [];
   public $details = [];
 
+  /**
+   * Constructor function for setting url.
+   *
+   * @param string $api_url
+   *   For setting the $url.
+   */
   function __construct (string $api_url) {
+    $this->url = $api_url;
+  }
+
+  /**
+   *  Get data from API url and set tha data to class variables.
+   */
+  public function set_data() {
     // API response data.
-    $response_data = request($api_url);
+    $response_data = request($this->url);
 
     for ($i = 12; $i <= 15; $i++) {
       // Get title.

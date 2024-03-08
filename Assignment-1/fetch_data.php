@@ -1,6 +1,7 @@
 <?php
 
-require __DIR__ . '/fetchAPI.php';
+require __DIR__ . '/FetchAPI.php';
 require __DIR__ . '/creds.php';
 
-$apiResponse = new fetchAPI($api_url);
+$apiResponse = new FetchAPI($api_url);
+$apiResponse->set_data();
