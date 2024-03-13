@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.data-input {
+  margin: 20px auto;
+  width: 450px;
+  padding: 28px;
+  border-radius: 6px;
+  box-shadow: 10px 10px 5px #000000;
+  background-color: #7c98e4;
+
+  label {
+    font-weight: 600;
+    text-transform: capitalize;
+    font-size: 18px;
+  }
+
+  input {
+    margin: 2px 0 16px;
+    width: 100%;
+    height: 36px;
+    border: solid 1px #304680;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 0 3px;
+  }
+
+  input[type="submit"] {
+    width: 40%;
+    margin-top: 20px;
+    color: red;
+  }
+}
