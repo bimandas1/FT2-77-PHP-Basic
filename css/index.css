@@ -1,0 +1,18 @@
+.change-password, .reset-password, .register {
+  margin: 20px 0;
+  padding: 8px 0 8px 25px;
+  background-color: #4fbfd3;
+  border-radius: 6px;
+
+  span {
+    font-size: 18px;
+    margin: 0 20px 0 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: rgb(29, 56, 206);
+    font-size: 20px;
+    font-weight: 500;
+  }
+}
