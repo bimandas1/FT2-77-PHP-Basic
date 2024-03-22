@@ -1,24 +1,21 @@
 <?php
 
+// POST request - Eamil submission.
 if (isset($_POST['id'])) {
   require __DIR__ . '/authenticate.php';
   require __DIR__ . '/random_string.php';
   require __DIR__ . '/mail.php';
 
+  $id = $_POST['id'];
+  // Warning message.
   $email_not_registered = FALSE;
 
-  $id = $_POST['id'];
-
-  // If user id is valid.
+  // If user id exists in database.
   if ($db->isExistingUser($id) == TRUE) {
-    // New unique password (random string).
-    $new_random_password = generateRandomString(6);
-    // Change ol password with the new one (random string).
-    $db->changePassword($id, $new_random_password);
-    // Send the new password (random string) to the user's email.
-    mailer($id, $new_random_password);
-
-    header('location: ./change_password.php?msg=New password have been generated and sent to your email');
+    session_start();
+    $_SESSION['authenticate_email'] = $id;
+    // Redirect for OTP verification.
+    header('location: ./otp_validation.php?msg=OTP has been sent to your email');
   }
   else {
     $email_not_registered = TRUE;

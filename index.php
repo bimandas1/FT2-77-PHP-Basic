@@ -5,8 +5,10 @@ require __DIR__ . '/manage_session.php';
 // End session on page reload.
 end_session();
 
+// Warning message.
 $wrong_id_password = FALSE;
 
+// If get a POST request.
 if (isset($_POST['id'])) {
   require __DIR__ . '/authenticate.php';
 
@@ -39,14 +41,14 @@ if (isset($_POST['id'])) {
 </head>
 <body>
   <div class="main">
-    <!-- Id - password not matched -->
+    <!-- Warning message : Id/password not matched -->
     <?php if ($wrong_id_password == TRUE) : ?>
       <div class="alert wrong">
         <p>Wrong Id or password</p>
       </div>
     <?php endif; ?>
 
-    <!-- GET message -->
+    <!-- Message through GET parameter -->
     <?php if (isset($_GET['msg'])) : ?>
       <div class="alert">
         <p><?= $_GET['msg'] ?></p>
@@ -66,15 +68,18 @@ if (isset($_POST['id'])) {
       </form>
     </div>
 
+    <!-- Change password link -->
     <div class="change-password">
       <a href="./change_password.php"> Change password </a>
     </div>
 
+    <!-- Reset password link -->
     <div class="reset-password">
       <span>Forgot Password ? </span>
       <a href="./reset_password.php"> Reset password </a>
     </div>
 
+    <!-- Register password link -->
     <div class="register">
       <span>New user ? </span>
       <a href="./register.php"> Register </a>

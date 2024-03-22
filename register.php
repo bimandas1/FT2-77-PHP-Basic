@@ -1,21 +1,29 @@
 <?php
 
-$warning_already_registered = FALSE;
+require __DIR__ . '/validate_email.php';
+// start session.
+session_start();
+// Warning message.
+$warning_msg = '';
 
+// POST request - email submission.
 if (isset($_POST['id'])) {
   require __DIR__ . '/authenticate.php';
 
   $id = $_POST['id'];
-  $password = $_POST['password'];
-
   // User already registered.
   if ($db->isExistingUser($id) == TRUE) {
-    $warning_already_registered = TRUE;
+    $warning_msg = 'You are already registered';
   }
+  // Email is not valid.
+  else if (is_valid_email($id) == FALSE) {
+    $warning_msg = 'Invalid Email Id';
+  }
+  // Email is valid and not already registered.
   else {
-    // User is not already registered, add new id - password.
-    $db->addNewUser($id, $password);
-    header('location: ./index.php?msg=You have been signed up');
+    $_SESSION['authenticate_email'] = $id;
+    // redirec t for OTP verification.
+    header('location: ./otp_validation.php?msg=OTP has been sent to your email');
   }
 }
 ?>
@@ -31,9 +39,9 @@ if (isset($_POST['id'])) {
 <body>
   <div class="main">
     <!-- If user is already registered -->
-    <?php if ($warning_already_registered == TRUE): ?>
+    <?php if ($warning_msg != ''): ?>
       <div class="alert wrong">
-        <p>You are already registered</p>
+        <p><?= $warning_msg ?></p>
       </div>
     <?php endif; ?>
 
@@ -46,12 +54,9 @@ if (isset($_POST['id'])) {
       <form action="./register.php" method="POST">
         <label for="id"> Id : </label>
         <input type="text" name="id" placeholder="Email Id">
-        <label for="password"> Password : </label>
-        <input type="text" name="password" placeholder="Password">
         <input type="submit">
       </form>
     </div>
   </div>
 </body>
-
 </html>

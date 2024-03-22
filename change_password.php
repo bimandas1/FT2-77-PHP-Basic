@@ -1,5 +1,6 @@
 <?php
 
+// Warning message.
 $warning_id_or_old_password_incorrect = FALSE;
 
 if (isset($_POST['id'])) {
@@ -12,7 +13,7 @@ if (isset($_POST['id'])) {
 
   // If user id and old password is valid.
   if ($db->isValidUser($id, $old_password) == TRUE) {
-    // Change password with the new one.
+    // Change password by the new password.
     $db->changePassword($id, $new_password);
     header('location: ./index.php?msg=Password changed');
   }
@@ -39,7 +40,7 @@ if (isset($_POST['id'])) {
       </div>
     <?php endif; ?>
 
-    <!-- GET parameters -->
+    <!-- Message from GET parameters -->
     <?php if (isset($_GET['msg'])) : ?>
       <div class="alert">
         <p><?= $_GET['msg'] ?></p>
@@ -60,5 +61,4 @@ if (isset($_POST['id'])) {
     </div>
   </div>
 </body>
-
 </html>

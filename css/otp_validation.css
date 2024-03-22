@@ -1,0 +1,27 @@
+input[name="resend-otp-request"] {
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.resend-otp {
+  background-color: #f3c6bf;
+  padding: 28px;
+  border-radius: 6px;
+  box-shadow: 10px 10px 5px #000000;
+
+  p {
+    font-size: 18px;
+    font-weight: 600;
+    color: rgb(54, 0, 0);
+    margin-bottom: 14px;
+  }
+
+  input[name="resend-otp-request"] {
+    padding: 10px;
+    border-radius: 4px;
+    border: solid 1px black;
+    color: #aa0000;
+    font-size: 16px;
+    font-weight: 600;
+  }
+}
