@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main {
+  margin: 20px auto 40px;
+  width: 95%;
+  background-color: rgb(221, 221, 221);
+  border-radius: 6px;
+  padding: 20px;
+}
+
+.greet {
+  margin: 12px auto 30px;
+  text-align: center;
+  color: blue;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.footer {
+  margin: 20px auto;
+  width: 95%;
+  padding: 20px;
+
+  a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 20px;
+    color: red;
+    font-size: 22px;
+    font-weight: 600;
+    border: solid 2px #db9a20;
+    border-radius: 8px;
+    background-color: #f3ede2;
+  }
+  :hover {
+    background-color: #ecad38;
+    border: solid 2px red;
+  }
+}
