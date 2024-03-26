@@ -1,3 +1,13 @@
+<?php
+
+require __DIR__ . '/Mail.php';
+
+if(isset($_POST['email'])) {
+  $mail = new Mail();
+  $mail->sendMail($_POST['email']);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +16,7 @@
   <title>PHP Adv assignment-2</title>
 </head>
 <body>
-  <form action="./mail.php" method="POST">
+  <form action="./index.php" method="POST">
     <label for="email"> Email : </label>
     <input type="email" name="email">
     <input type="submit">
