@@ -1,0 +1,6 @@
+{
+  "name": "biman/php-mailer",
+  "require": {
+    "phpmailer/phpmailer": "^6.9"
+  }
+}

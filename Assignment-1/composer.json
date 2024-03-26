@@ -1,0 +1,12 @@
+{
+    "name": "biman/get-api-data",
+    "authors": [
+        {
+            "name": "bimandas1",
+            "email": "biman.das@innoraft.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.8"
+    }
+}
