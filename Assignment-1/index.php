@@ -9,7 +9,7 @@ require __DIR__ . '/fetch_data.php';
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PHP Adv Assignment-2</title>
-  <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="./css/index_style.css">
 </head>
 <body>
   <scetion class="main-section">
@@ -39,5 +39,4 @@ require __DIR__ . '/fetch_data.php';
     </div>
   </scetion>
 </body>
-<link rel="stylesheet" href="./css/index2.css">
 </html>

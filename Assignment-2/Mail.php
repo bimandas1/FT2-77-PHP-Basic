@@ -26,10 +26,10 @@ class Mail {
    * @param string
    *   Receiver's email id.
    */
-  public function sendMail($receiver_email) {
+  public function sendMail(string $receiver_email) {
     try {
       // Server settings.
-      $this->mail->Host = 'smtp.gmail.com';
+      $this->mail->Host = MAIL_HOST;
       $this->mail->SMTPAuth = true;
       $this->mail->isSMTP();
       $this->mail->Username = SENDER_EMAIL;
@@ -49,8 +49,8 @@ class Mail {
       $this->mail->send();
       echo 'Message has been sent';
     }
-    catch (Exception $e) {
-      echo "Message could not be sent. Mailer Error: {$this->mail->ErrorInfo}";
+    catch (Exception) {
+      echo 'Message could not be sent';
     }
   }
 }

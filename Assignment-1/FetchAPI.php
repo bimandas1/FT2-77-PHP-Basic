@@ -16,26 +16,26 @@ class FetchAPI {
    * @param string $api_url
    *   For setting the $url.
    */
-  function __construct (string $api_url) {
-    $this->url = $api_url;
+  function __construct (string $apiUrl) {
+    $this->url = $apiUrl;
   }
 
   /**
    *  Get data from API url and set tha data to class variables.
    */
-  public function set_data() {
+  public function setData() {
     try {
       // API response data.
       $response_data = request($this->url);
       if ($response_data == NULL) {
-        throw new Exception;
+        throw new Exception('Error while fetching data');
       }
 
       for ($i = 12; $i <= 15; $i++) {
         // Get title.
         array_push($this->title, $response_data['data'][$i]['attributes']['title']);
         if (end($this->title) === NULL) {
-          throw new Exception;
+          throw new Exception('Error while fetching data.');
         }
 
         // Get title image.
@@ -43,7 +43,7 @@ class FetchAPI {
         array_push($this->title_img, self::$domain . $response_title_img['data']['attributes']['uri']['url']);
         // Only $domain available in #title_img means img path not fetched.
         if (end($this->title_img) === self::$domain) {
-          throw new Exception;
+          throw new Exception('Error while fetching data.');
         }
 
         // Get service icons.
@@ -55,7 +55,7 @@ class FetchAPI {
 
           // Only $domain available in #icon_arr means img path not fetched.
           if (end($icon_arr) === self::$domain) {
-            throw new Exception;
+            throw new Exception('Error while fetching data.');
           }
         }
         array_push($this->icon_arrays, $icon_arr);
@@ -63,12 +63,12 @@ class FetchAPI {
         // Get details of service (in html list).
         array_push($this->details, $response_data['data'][$i]['attributes']['field_services']['value']);
         if (end($this->details) === NULL) {
-          throw new Exception;
+          throw new Exception('Error while fetching data.');
         }
       }
     }
-    catch (Exception) {
-      die('Error while fetching the API.');
+    catch (Exception $err) {
+      die('Error message : ' . $err->getMessage());
     }
   }
 }

@@ -16,7 +16,7 @@ if(isset($_POST['email'])) {
   <title>PHP Adv assignment-2</title>
 </head>
 <body>
-  <form action="./index.php" method="POST">
+  <form action="/" method="POST">
     <label for="email"> Email : </label>
     <input type="email" name="email">
     <input type="submit">
