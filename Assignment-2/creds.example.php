@@ -1,6 +1,8 @@
 <?php
 
-$smtp_password = '';
-$sender_email = '';
-$mail_subject = '';
-$mail_content_alternative = '';
+define('MAIL_HOST', '');
+define('SMTP_PASSWORD', '');
+define('SENDER_EMAIL', '');
+define('MAIL_SUBJECT', '');
+define('MAIL_CONTENT', '');
+define('MAIL_CONTENT_ALTERNATIVE', '');
