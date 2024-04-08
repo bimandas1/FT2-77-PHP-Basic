@@ -1,0 +1,114 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: #dfdfdf;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.user-profile-link {
+  display: inline-block;
+  padding: 10px 16px;
+  border: solid 2px #2133d3;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.add-post-section {
+  width: 100%;
+  background-color: rgb(214, 214, 8);
+  padding: 10px 0;
+  display: flex;
+  justify-content:center;
+}
+
+/* Search post */
+.search-section {
+  background-color: green;
+  height: 80px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search {
+  height: 65%;
+  width: 400px;
+  margin: 0 auto;
+
+  input[name='search'] {
+    height: 100%;
+    width: 100%;
+    font-size: 22px;
+    border-radius: 4px;
+    padding: 0 8px;
+  }
+}
+
+/* Add Post */
+.add-post {
+  padding: 10px 10px;
+  border: solid 2px #2133d3;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* Post section */
+.feeds-section {
+  background-color: #575757;
+  padding: 5px 0 30px;
+}
+
+.feed-block {
+  margin: 0 auto 5px;
+  width: 450px;
+  padding: 10px;
+  background-color: #fff;
+}
+
+.post-media-box {
+  margin-block: 7px;
+
+  .post-media {
+    width: 100%;
+  }
+}
+
+/* Load more */
+.load-more {
+  margin: 25px 0;
+  text-align: center;
+}
+
+#load-more-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  color: green;
+  font-size: 20px;
+  font-weight: 500;
+  border-radius: 4px;
+}
+
+#load-more-btn:hover {
+  cursor: pointer;
+}

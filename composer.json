@@ -1,0 +1,6 @@
+{
+    "name": "biman/site5",
+    "require": {
+        "phpmailer/phpmailer": "^6.9"
+    }
+}
