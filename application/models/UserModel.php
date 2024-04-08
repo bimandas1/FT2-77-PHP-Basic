@@ -2,9 +2,18 @@
 
 require_once __DIR__ . '/Database.php';
 
+/**
+ * Perform queries on user table.
+ */
 class UserModel extends Database {
   public $table;
 
+  /**
+   * Constructor function to use the connection with database.
+   *
+   * @param string $tableName
+   *  User table's name.
+   */
   function __construct ($tableName) {
     parent::__construct();
     $this->table = $tableName;
