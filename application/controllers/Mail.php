@@ -1,7 +1,7 @@
 <?php
 
 require __DIR__ . '/../../vendor/autoload.php';
-require __DIR__ . '/creds.php';
+require_once __DIR__ . '/../core/Dotenv.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -18,6 +18,7 @@ class Mail {
    */
   function __construct() {
     $this->mail = new PHPMailer(true);
+    $dotEnv = new Dotenv();
   }
 
   /**
@@ -27,23 +28,26 @@ class Mail {
    *   Receiver's email id.
    */
   public function sendMail($receiver_email, $otp) {
+    // echo $_ENV['MAIL_HOST'] . ' ' . $_ENV['SENDER_EMAIL'];
+
+
     try {
       // Server settings.
-      $this->mail->Host = 'smtp.gmail.com';
+      $this->mail->Host = $_ENV['MAIL_HOST'];
       $this->mail->SMTPAuth = true;
       $this->mail->isSMTP();
-      $this->mail->Username = SENDER_EMAIL;
-      $this->mail->Password = SMTP_PASSWORD;
+      $this->mail->Username = $_ENV['SENDER_EMAIL'];
+      $this->mail->Password = $_ENV['SMTP_PASSWORD'];
       $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
       $this->mail->Port = 465;
 
       // Sender & receiver's information.
-      $this->mail->setFrom(SENDER_EMAIL, 'Sender Name');
+      $this->mail->setFrom($_ENV['SENDER_EMAIL'], 'Sender Name');
       $this->mail->addAddress($receiver_email, 'Receiver Name');
 
       // Mail Content.
       $this->mail->isHTML(true);
-      $this->mail->Subject = MAIL_SUBJECT;
+      $this->mail->Subject = $_ENV['MAIL_SUBJECT'];
       $this->mail->Body = <<<END
         <h2> This is your new passqord for reset your old password. </h2>
         <h3 style="background-color:yellow;"> $otp </h3>
@@ -51,11 +55,11 @@ class Mail {
         <p> Use this password for log in. </p>
         <p> It is recommended to change this password with new one. </p>
       END;
-      $this->mail->AltBody = MAIL_CONTENT_ALTERNATIVE;
+      $this->mail->AltBody = $_ENV['MAIL_CONTENT_ALTERNATIVE'];
       $this->mail->send();
     }
-    catch (Exception $e) {
-      echo 'Error while sending mail' . $e->getMessage();
+    catch (Exception) {
+      echo 'Error while sending mail';
     }
   }
 }
