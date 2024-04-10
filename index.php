@@ -1,8 +1,11 @@
 <?php
 
-$url = $_SERVER['REQUEST_URI'];
+$url = $_SERVER['REQUEST_URI'];    // print_r($url);  echo '<br> <br>';
 $url = rtrim($url);
-$url = explode('/', $url);
+$url = explode('?', $url)[0];   // print_r($url);  echo '<br> <br>';
+$url = explode('/', $url);      // print_r($url); echo '<br> <br>';
+
+// echo $url[1];
 
 switch ($url[1]) {
   case '' :
@@ -30,6 +33,6 @@ switch ($url[1]) {
     break;
 
   default :
-      echo 'default';
+    echo 'default';
 }
 ?>

@@ -30,20 +30,26 @@
         <input type="submit" name="submit">
       </form>
 
-    </div>
+      <!-- Google login -->
+        <div class="google-login">
+          <a href="<?php echo $client->createAuthUrl() ?>">
+            Login With Google
+            <!-- <img src="../View/images/google-signin-button.png" width="270px"> -->
+          </a></p>
+      </div>
 
-    <!-- Reset password link -->
-    <div class="reset-password">
-      <span>Forgot Password ? </span>
-      <a href="/Reset-password"> Reset password </a>
-    </div>
+      <!-- Reset password link -->
+      <div class="reset-password">
+        <span>Forgot Password ? </span>
+        <a href="/Reset-password"> Reset password </a>
+      </div>
 
-    <!-- Register password link -->
-    <div class="register">
-      <span>New user ? </span>
-      <a href="/Register"> Register </a>
+      <!-- Register password link -->
+      <div class="register">
+        <span>New user ? </span>
+        <a href="/Register"> Register </a>
+      </div>
     </div>
-  </div>
 </body>
 
 </html>

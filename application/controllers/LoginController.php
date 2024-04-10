@@ -1,6 +1,6 @@
 <?php
 
-require './application/controllers/destroy_session.php';
+require_once __DIR__ . '/destroy_session.php';
 require_once __DIR__ . '/../models/UserModel.php';
 
 destroy_session();
@@ -22,4 +22,9 @@ if (isset($_POST['submit'])) {
   }
 }
 
-require './application/views/Login.php';
+// Google authentication
+require_once __DIR__ . '/../helper/google_authentication.php';
+
+// require './application/views/Login.php';
+require_once __DIR__ . '/../views/Login.php';
+

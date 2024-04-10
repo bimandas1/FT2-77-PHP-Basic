@@ -14,12 +14,21 @@ class UserModel extends Database {
    * @param string $tableName
    *  User table's name.
    */
-  function __construct ($tableName) {
+  function __construct (string $tableName) {
     parent::__construct();
     $this->table = $tableName;
   }
 
-  public function isExistingUser ($email) {
+  /**
+   * Check user exist or not.
+   *
+   * @param string $email.
+   *   User's email.
+   *
+   * @return boolean
+   *   True if user exists.
+   */
+  public function isExistingUser (string $email) : bool {
     try {
       $sql = $this->conn->prepare("select email from {$this->table} where email = ?");
       $sql->execute([$email]);
@@ -33,7 +42,18 @@ class UserModel extends Database {
     }
   }
 
-  public function changePassword ($email, $password) {
+  /**
+   * Undocumented function
+   *
+   * @param string $email.
+   *   User's email.
+   * @param string $password.
+   *   User's password.
+   *
+   * @return bool.
+   *   True if changing is successfull.
+   */
+  public function changePassword (string $email, string $password) : bool {
     try {
       $sql = $this->conn->prepare("update {$this->table} set password = ? where email = ?");
       $sql->execute([$password, $email]);
@@ -47,7 +67,18 @@ class UserModel extends Database {
     }
   }
 
-  public function isValidUser ($email, $password) : bool {
+  /**
+   * Check user is valid or not.
+   *
+   * @param string $email.
+   *   User's email.
+   * @param string $password.
+   *   User's password.
+   *
+   * @return boolean.
+   *   True if user email and password match.
+   */
+  public function isValidUser (string $email, string $password) : bool {
     $ret = ['res' => null , 'err' => null];
     try {
       $sql = $this->conn->prepare("select password from {$this->table} where email = ? AND password = ?");
@@ -60,7 +91,22 @@ class UserModel extends Database {
     }
   }
 
-  public function addUser ($email, $password, $fname, $lname) {
+  /**
+   * Add new user's data.
+   *
+   * @param string $email.
+   *   User's email.
+   * @param string $password.
+   *   User's password.
+   * @param string $fname.
+   *   User's First name.
+   * @param string $lname.
+   *   User's Last name.
+   *
+   * @return bool.
+   *   True if addition is successfull.
+   */
+  public function addUser (string $email, string $password, string $fname, string $lname) : bool {
     try {
       $sql = $this->conn->prepare("insert into {$this->table} values (?, ?, ?, ?)");
       $sql->execute([$email, $password, $fname, $lname]);
@@ -74,7 +120,16 @@ class UserModel extends Database {
     }
   }
 
-  public function getUserData($email) {
+  /**
+   * Get user's data.
+   *
+   * @param string $email.
+   *   User's email.
+   *
+   * @return array.
+   *   User's data.
+   */
+  public function getUserData(string $email) : array {
     try {
       $sql = $this->conn->prepare("Select fname, lname from user {$this->table} where email = ?");
       $sql->execute([$email]);
@@ -86,7 +141,16 @@ class UserModel extends Database {
     }
   }
 
-  public function getUserPassword($email) {
+  /**
+   * Get user's password.
+   *
+   * @param string $email.
+   *   User's email.
+   *
+   * @return string.
+   *   User's password.
+   */
+  public function getUserPassword(string $email) : string {
     try {
       $sql = $this->conn->prepare("Select password from user {$this->table} where email = ?");
       $sql->execute([$email]);
@@ -98,7 +162,20 @@ class UserModel extends Database {
     }
   }
 
-  public function updateUserData($email, $fname, $lname) {
+  /**
+   * Update user's data.
+   *
+   * @param string $email.
+   *   User' email.
+   * @param string $fname.
+   *   User's first name.
+   * @param string $lname.
+   *   User's last name.
+   *
+   * @return bool.
+   *   True if updation is successfull.
+   */
+  public function updateUserData(string $email, string $fname, string $lname) : bool {
     try {
       $sql = $this->conn->prepare("update {$this->table} set fname = ?, lname = ? where email = ?");
       $sql->execute([$fname, $lname, $email]);
@@ -112,7 +189,18 @@ class UserModel extends Database {
     }
   }
 
-  public function updateUserPassword($email, $new_password) {
+  /**
+   * Update user's password.
+   *
+   * @param string $email.
+   *   User' email.
+   * @param string $password.
+   *   User's password.
+   *
+   * @return bool.
+   *   True if updation is successfull.
+   */
+  public function updateUserPassword(string $email, string $new_password) : bool {
     try {
       $sql = $this->conn->prepare("update {$this->table} set password = ? where email = ?");
       $sql->execute([$new_password, $email]);
