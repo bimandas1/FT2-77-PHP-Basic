@@ -1,11 +1,9 @@
 <?php
 
-$url = $_SERVER['REQUEST_URI'];    // print_r($url);  echo '<br> <br>';
+$url = $_SERVER['REQUEST_URI'];
 $url = rtrim($url);
-$url = explode('?', $url)[0];   // print_r($url);  echo '<br> <br>';
-$url = explode('/', $url);      // print_r($url); echo '<br> <br>';
-
-// echo $url[1];
+$url = explode('?', $url)[0];
+$url = explode('/', $url);
 
 switch ($url[1]) {
   case '' :
@@ -26,6 +24,10 @@ switch ($url[1]) {
 
   case 'Reset-password' :
     require __DIR__ . '/application/controllers/reset_password.php';
+    break;
+
+  case 'Google-login':
+    require_once __DIR__ . '/application/controllers/google_login.php';
     break;
 
   case 'Profile' :

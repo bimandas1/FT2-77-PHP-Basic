@@ -13,7 +13,7 @@ $(document).on('submit', '#reset-password-submit-form', function (e) {
       $('.data-input').html(data);
     },
     error: function() {
-      alert('Error !')
+      alert('An error occured ! Try again.');
     }
   });
 });

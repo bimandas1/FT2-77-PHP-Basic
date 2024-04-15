@@ -39,6 +39,13 @@
     </div>
   </div>
 
+  <!-- Alert message (by JS) -->
+  <div class="alert-box">
+    <p id="alert-message">
+      xyz
+    </p>
+  </div>
+
   <!-- Feeds -->
   <div class="feeds-section" id="feeds-posts">
     <!-- Fetch Posts on page load -->

@@ -26,6 +26,13 @@
 
   <div class="main">
 
+    <!-- Alert message (by JS) -->
+    <div class="alert-box">
+      <p id="alert-message">
+        xyz
+      </p>
+    </div>
+
     <!-- Update fname, lname -->
     <div class="data-input">
       <div class="title">

@@ -73,6 +73,19 @@ a {
   font-weight: 500;
 }
 
+/* Alert message (by JS) */
+.alert-box {
+  display: none;
+  text-align: center;
+}
+
+#alert-message {
+  font-size: 22px;
+  font-weight: 600;
+  color: blue;
+  margin-block: 10px;
+}
+
 /* Post section */
 .feeds-section {
   background-color: #575757;

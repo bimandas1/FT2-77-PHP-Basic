@@ -1,4 +1,3 @@
-
 * {
   margin: 0;
   padding: 0;
@@ -9,14 +8,6 @@ a {
   text-decoration: none;
   color: black;
 }
-
-/* User profile */
-/* .user-profile {
-  width: 600px;
-  background-color: gainsboro;
-  display: flex;
-  justify-content: center;
-} */
 
 /* Navbar */
 .navbar {

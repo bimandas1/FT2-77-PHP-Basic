@@ -1,8 +1,15 @@
 $('#searched-posts').hide();
 
-// Add Post
-$(document).on('click', '#add-post-btn', function(e) {
-  e.preventDefault();
+// Add Post.
+$(document).on('click', '#add-post-btn', addPost);
+
+// Load more posts.
+$(document).on('click', '#load-more-btn', loadPosts);
+
+// Search post
+$(document).on('keyup', '#search-post', searchPosts);
+
+function addPost() {
   let fd = new FormData();
   // Append input text.
   let text = $("#post-text-input").val();
@@ -12,7 +19,7 @@ $(document).on('click', '#add-post-btn', function(e) {
   fd.append('media', mediaFile);
 
   if(text === '' && mediaFile === undefined) {
-    alert('Atleast one field (text or media) mut be filled to add a post');
+    showAlertMessage('Atleast one field (text or media) mut be filled to add a post');
   }
   else {
     $.ajax({
@@ -22,20 +29,18 @@ $(document).on('click', '#add-post-btn', function(e) {
       contentType: false,
       processData: false,
       success: function(data) {
-
-      if(data == '1') {
-        alert('Successfully uploaded');
-      }
+        if(data == '1') {
+          showAlertMessage('Post uploaded successfully.');
+        }
       else {
-        alert("Your post didn't uploaded ! Try again.");
+        showAlertMessage("Your post didn't uploaded ! Try again.");
       }
       }
     });
   }
-});
+}
 
-// Load more posts
-$(document).on('click', '#load-more-btn', function() {
+function loadPosts() {
   // Get the id of the last post.
   let lastPostId = $('.feed-block:last').attr('id') || 1000000;
 
@@ -46,19 +51,17 @@ $(document).on('click', '#load-more-btn', function() {
       last_post_id: lastPostId
     },
     success: function(data) {
-      // alert(data);
       if(data == '0') {
-        alert('No more post is available');
+        showAlertMessage('No more post is available');
       }
       else {
         $('#feeds-posts').append(data);
       }
     }
   });
-});
+}
 
-// Search post
-$(document).on('keyup', '#search-post', function() {
+function searchPosts() {
   let searchKeys = $('#search-post').val();
   if(searchKeys === '') {
     $('#searched-posts').hide();
@@ -85,9 +88,17 @@ $(document).on('keyup', '#search-post', function() {
         }
       },
       error: function() {
-        alert("Error !")
+        showAlertMessage("Error !")
       }
     });
   }
-});
+}
 
+// Alert message in UI
+function showAlertMessage(msg) {
+  $('.alert-box').css({'display': 'block'});
+  $('#alert-message').text(msg);
+  setTimeout(function() {
+    $('.alert-box').css({ 'display': 'none' });
+  }, 7000);
+}

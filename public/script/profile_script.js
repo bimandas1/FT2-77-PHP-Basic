@@ -9,14 +9,13 @@ $(document).on('click', '#update-user-info', function() {
       lname: $("input[name='lname']").val(),
     },
     success: function(data) {
-      alert(data);
+      showAlertMessage(data);
     },
     error: function() {
-      alert("Error !");
+      showAlertMessage("Error !");
     }
   });
 });
-
 
 // Update user password
 $(document).on('click', '#update-user-password', function () {
@@ -25,7 +24,7 @@ $(document).on('click', '#update-user-password', function () {
   reenter_new_password = $("input[name='reenter-new-password']").val();
 
   if(new_password !== reenter_new_password) {
-    alert("Conform passsword doesn't match");
+    showAlertMessage("Conform passsword doesn't match");
   }
   else {
     $.ajax({
@@ -37,11 +36,20 @@ $(document).on('click', '#update-user-password', function () {
         'new-password': new_password,
       },
       success: function (data) {
-        alert(data);
+        showAlertMessage(data);
       },
       error: function () {
-        alert("Error !");
+        showAlertMessage("Error !");
       }
     });
   }
 });
+
+// Alert message in UI
+function showAlertMessage(msg) {
+  $('.alert-box').css({ 'display': 'block' });
+  $('#alert-message').text(msg);
+  setTimeout(function () {
+    $('.alert-box').css({ 'display': 'none' });
+  }, 7000);
+}

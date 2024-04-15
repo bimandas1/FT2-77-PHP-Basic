@@ -28,9 +28,6 @@ class Mail {
    *   Receiver's email id.
    */
   public function sendMail($receiver_email, $otp) {
-    // echo $_ENV['MAIL_HOST'] . ' ' . $_ENV['SENDER_EMAIL'];
-
-
     try {
       // Server settings.
       $this->mail->Host = $_ENV['MAIL_HOST'];

@@ -147,10 +147,10 @@ class UserModel extends Database {
    * @param string $email.
    *   User's email.
    *
-   * @return string.
-   *   User's password.
+   * @return array.
+   *   User's data (password column only).
    */
-  public function getUserPassword(string $email) : string {
+  public function getUserPassword(string $email) : array {
     try {
       $sql = $this->conn->prepare("Select password from user {$this->table} where email = ?");
       $sql->execute([$email]);

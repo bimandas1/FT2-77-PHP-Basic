@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/destroy_session.php';
 require_once __DIR__ . '/../models/UserModel.php';
+require_once __DIR__ . '/../helper/GoogleAuthentication.php';
 
 destroy_session();
 $msg = null;
@@ -22,9 +23,8 @@ if (isset($_POST['submit'])) {
   }
 }
 
-// Google authentication
-require_once __DIR__ . '/../helper/google_authentication.php';
+// Authenticate user email by Google login.
+$googleAuthentication = new GoogleAuthentication();
+$googleAuthentication->authenticate();
 
-// require './application/views/Login.php';
 require_once __DIR__ . '/../views/Login.php';
-

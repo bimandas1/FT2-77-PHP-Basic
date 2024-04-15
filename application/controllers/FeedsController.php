@@ -12,7 +12,6 @@ require_once __DIR__ . '/../models/UserModel.php';
 $email = $_SESSION['email'];
 
 // Fetch user's data.
-
 $db = new UserModel('user');
 $user_data = $db->getUserData($email);
 

@@ -40,14 +40,5 @@ else if($_POST['task'] === 'reset_password') {
 
 $mail = new Mail();
 $mail->sendMail($email, $otp);
-// echo 'OTP -> ' . $otp . '<br>';
 
-echo '
-  <!-- OTP input form -->
-  <div class="title">
-    <p>Enter OTP</p>
-  </div>
-
-  <input type="text" name="otp" placeholder="OTP">
-  <input type="submit" id="otp-submit-btn" value="Submit OTP">
-';
+require_once __DIR__ . '/../views/otp_input.html';

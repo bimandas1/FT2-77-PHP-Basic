@@ -105,3 +105,18 @@
     font-weight: 500;
   }
 }
+
+/* Alert message (by JS) */
+.alert-box {
+  display: none;
+  text-align: center;
+}
+
+#alert-message {
+  font-size: 22px;
+  font-weight: 600;
+  color: blue;
+  margin-block: 10px;
+  border: solid 1px blue;
+  border-radius: 4px;
+}

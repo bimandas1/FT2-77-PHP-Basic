@@ -31,11 +31,9 @@
       </form>
 
       <!-- Google login -->
-        <div class="google-login">
-          <a href="<?php echo $client->createAuthUrl() ?>">
-            Login With Google
-            <!-- <img src="../View/images/google-signin-button.png" width="270px"> -->
-          </a></p>
+      <div class="google-login">
+        <!-- Get authentication url -->
+        <a href="<?= $googleAuthentication->getAuthUrl(); ?>"> Login with Google </a>
       </div>
 
       <!-- Reset password link -->
