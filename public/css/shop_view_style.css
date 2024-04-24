@@ -1,0 +1,27 @@
+.product-section {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.products {
+  display: grid;
+  justify-content: center;
+  margin: 0 auto;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
+  grid-gap: 20px;
+}
+
+.card {
+  text-align: left;
+  
+  .card-photo {
+    height: 80%;
+  }
+
+  .cart-text-price {
+    font-weight: 700;
+    font-size: 24px;
+  }
+}
+
+
